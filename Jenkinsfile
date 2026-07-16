@@ -84,7 +84,7 @@ pipeline {
                 Puedes revisar los detalles aquí:
                 ${env.BUILD_URL}
                 """,
-                to: "garciajordy137@gmail.com"
+                to: "garciajordy317@gmail.com"
             )
         }
 
@@ -107,7 +107,7 @@ pipeline {
                 Revisa los logs aquí:
                 ${env.BUILD_URL}
                 """,
-                to: "garciajordy137@gmail.com"
+                to: "garciajordy317@gmail.com"
             )
         }
 
