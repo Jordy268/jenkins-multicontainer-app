@@ -67,12 +67,48 @@ pipeline {
 
 
         success {
+
             echo 'Pipeline ejecutado correctamente.'
+
+            emailext(
+                subject: "✅ Jenkins SUCCESS - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                Hola Jordy,
+
+                El pipeline terminó correctamente.
+
+                Proyecto: ${env.JOB_NAME}
+                Build: ${env.BUILD_NUMBER}
+                Estado: SUCCESS
+
+                Puedes revisar los detalles aquí:
+                ${env.BUILD_URL}
+                """,
+                to: "garciajordy137@gmail.com"
+            )
         }
 
 
         failure {
+
             echo 'El pipeline fallo.'
+
+            emailext(
+                subject: "❌ Jenkins FAILURE - ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: """
+                Hola Jordy,
+
+                El pipeline tuvo errores.
+
+                Proyecto: ${env.JOB_NAME}
+                Build: ${env.BUILD_NUMBER}
+                Estado: FAILURE
+
+                Revisa los logs aquí:
+                ${env.BUILD_URL}
+                """,
+                to: "garciajordy137@gmail.com"
+            )
         }
 
     }
