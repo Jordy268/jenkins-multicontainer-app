@@ -2,17 +2,21 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Copiar package.json y package-lock.json
+# Copiar archivos de dependencias
 COPY package*.json ./
 
 # Instalar dependencias
-RUN npm install
+RUN npm ci
 
-# Copiar el proyecto
-COPY . .
+# Copiar configuración Jest
+COPY jest.config.js ./
 
-# Exponer el puerto
+# Copiar código fuente
+COPY src/ ./src/
+
+# Copiar pruebas
+COPY tests/ ./tests/
+
 EXPOSE 3000
 
-# Iniciar la aplicación
 CMD ["npm", "start"]

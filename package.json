@@ -5,8 +5,8 @@
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
-    "test:unit": "jest tests/unit --coverage",
-    "test:integration": "jest tests/integration --runInBand --coverage",
+    "test:unit": "jest tests/unit --coverage --reporters=default --reporters=jest-junit",
+    "test:integration": "jest tests/integration --runInBand --coverage --reporters=default --reporters=jest-junit",
     "test:all": "npm run test:unit && npm run test:integration",
     "test": "jest"
   },

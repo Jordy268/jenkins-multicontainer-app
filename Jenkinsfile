@@ -1,8 +1,11 @@
 pipeline {
+
     agent any
-tools {
-    nodejs 'NodeJS'
-}
+
+    tools {
+        nodejs 'NodeJS'
+    }
+
     stages {
 
         stage('Verificar herramientas') {
@@ -14,11 +17,13 @@ tools {
             }
         }
 
+
         stage('Levantar contenedores') {
-    steps {
-        bat 'docker compose -f docker/docker-compose.test.yml up -d'
-    }
-}
+            steps {
+                bat 'docker compose -f docker/docker-compose.test.yml up -d'
+            }
+        }
+
 
         stage('Instalar dependencias') {
             steps {
@@ -26,38 +31,47 @@ tools {
             }
         }
 
+
         stage('Pruebas unitarias') {
             steps {
                 bat 'npm run test:unit'
-                
             }
-
         }
-         stage('Pruebas de integración') {
+
+
+        stage('Pruebas de integracion') {
             steps {
                 bat 'npm run test:integration'
             }
         }
 
-        stage('Detener contenedores') {
-    steps {
-        bat 'docker compose -f docker/docker-compose.test.yml down'
-    }
-}
+
+        stage('Verificar reportes') {
+            steps {
+                bat 'dir reports'
+            }
+        }
 
     }
+
 
     post {
 
         always {
-    junit 'reports/junit.xml'
-}
+
+            junit 'reports/junit.xml'
+
+            bat 'docker compose -f docker/docker-compose.test.yml down'
+        }
+
+
         success {
             echo 'Pipeline ejecutado correctamente.'
         }
 
+
         failure {
-            echo 'El pipeline falló.'
+            echo 'El pipeline fallo.'
         }
     }
 }

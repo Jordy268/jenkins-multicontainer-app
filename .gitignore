@@ -1,14 +1,5 @@
-# Dependencias Node
 node_modules/
-
-# Reportes de cobertura
 coverage/
-
-# Variables de entorno
-.env
-
-# Logs
+reports/
 *.log
-
-# Archivos temporales
-.DS_Store
+.env
