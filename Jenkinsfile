@@ -14,6 +14,12 @@ tools {
             }
         }
 
+        stage('Levantar contenedores') {
+    steps {
+        bat 'docker compose -f docker/docker-compose.test.yml up -d'
+    }
+}
+
         stage('Instalar dependencias') {
             steps {
                 bat 'npm install'
@@ -32,6 +38,12 @@ tools {
                 bat 'npm run test:integration'
             }
         }
+
+        stage('Detener contenedores') {
+    steps {
+        bat 'docker compose -f docker/docker-compose.test.yml down'
+    }
+}
 
     }
 
