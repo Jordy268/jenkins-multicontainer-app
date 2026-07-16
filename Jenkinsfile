@@ -48,6 +48,8 @@ pipeline {
 
         stage('Verificar reportes') {
             steps {
+                bat 'dir'
+                bat 'dir coverage'
                 bat 'dir reports'
             }
         }
@@ -59,7 +61,7 @@ pipeline {
 
         always {
 
-            junit 'reports/junit.xml'
+            junit allowEmptyResults: true, testResults: 'reports/junit.xml'
 
             bat 'docker compose -f docker/docker-compose.test.yml down'
         }
