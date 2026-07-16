@@ -23,6 +23,13 @@ tools {
         stage('Pruebas unitarias') {
             steps {
                 bat 'npm run test:unit'
+                
+            }
+
+        }
+         stage('Pruebas de integración') {
+            steps {
+                bat 'npm run test:integration'
             }
         }
 
