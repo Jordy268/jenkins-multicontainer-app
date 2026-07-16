@@ -4,10 +4,11 @@
   "description": "Aplicación con pruebas multi-contenedor",
   "main": "src/app.js",
   "scripts": {
-    "test:unit": "jest tests/unit",
-    "test:integration": "jest tests/integration --runInBand",
+    "start": "node src/app.js",
+    "test:unit": "jest tests/unit --coverage",
+    "test:integration": "jest tests/integration --runInBand --coverage",
     "test:all": "npm run test:unit && npm run test:integration",
-    "start": "node src/app.js"
+    "test": "jest"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "jest": "^29.5.0",
+    "jest-junit": "^17.0.0",
     "supertest": "^6.3.3"
   }
 }

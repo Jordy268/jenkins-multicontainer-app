@@ -48,6 +48,10 @@ tools {
     }
 
     post {
+
+        always {
+    junit 'reports/junit.xml'
+}
         success {
             echo 'Pipeline ejecutado correctamente.'
         }
