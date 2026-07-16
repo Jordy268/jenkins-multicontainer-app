@@ -50,7 +50,6 @@ pipeline {
             steps {
                 bat 'dir'
                 bat 'dir coverage'
-                bat 'dir reports'
             }
         }
 
@@ -61,7 +60,7 @@ pipeline {
 
         always {
 
-            junit allowEmptyResults: true, testResults: 'reports/junit.xml'
+            junit allowEmptyResults: false, testResults: 'junit.xml'
 
             bat 'docker compose -f docker/docker-compose.test.yml down'
         }
@@ -75,5 +74,6 @@ pipeline {
         failure {
             echo 'El pipeline fallo.'
         }
+
     }
 }
